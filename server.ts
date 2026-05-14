@@ -12,18 +12,27 @@ async function startServer() {
   app.post("/api/bookings", async (req, res) => {
     try {
       const bookingData = req.body;
+      const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
       
       console.log("New Booking Received:", bookingData);
 
-      // In a real scenario, you would use a Webhook URL from Google Apps Script or Zapier
-      // Example: const response = await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, { ... });
-      
-      // For now, we simulate a successful save
-      // You can add your Google Sheet Webhook URL in the .env file later
+      if (webhookUrl) {
+        try {
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bookingData),
+          });
+          const result = await response.json();
+          console.log("Google Sheet Response:", result);
+        } catch (webhookError) {
+          console.error("Webhook failed, but proceeding:", webhookError);
+        }
+      }
       
       res.json({ 
         success: true, 
-        message: "Booking data saved successfully to system (Simulated Google Sheet integration)",
+        message: "Booking data processed",
         bookingCode: `FLR-${Math.floor(Math.random() * 90000) + 10000}`
       });
     } catch (error) {
