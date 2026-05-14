@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Nunito", sans-serif;
+  --font-accent: "Poppins", sans-serif;
+
+  --color-brand-orange: #F5921E;
+  --color-brand-brown: #5C3A1E;
+  --color-brand-orange-light: #FAB84C;
+  --color-brand-cream: #FFF8F0;
+  --color-brand-cream-dark: #FDEAAD;
+  --color-brand-orange-mid: #D47400;
+  --color-brand-success: #3F8F5F;
+  --color-brand-error: #D94141;
+  --color-brand-gray: #7B7B7B;
+  --color-brand-border: #E6E1DA;
+  --color-brand-progress: #B8C79A;
+
+  --radius-card: 24px;
+  --radius-input: 18px;
+  --radius-button: 16px;
+
+  --shadow-warm: 0 16px 45px rgba(92, 58, 30, 0.12);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-cream text-brand-brown font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
+
